@@ -1,7 +1,7 @@
 package com.group06.sakila.service.actor_service;
 
 import com.group06.sakila.entity.Actor;
-import com.group06.sakila.dto.response.ErrorResponse;
+import com.group06.sakila.exception.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 
 

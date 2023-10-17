@@ -1,6 +1,5 @@
 package com.group06.sakila.controller;
 
-import com.group06.sakila.dto.response.SuccessResponse;
 import com.group06.sakila.entity.Film;
 import com.group06.sakila.service.film_service.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,7 +38,7 @@ public class FilmController {
             }
     )
     @GetMapping("")
-    ResponseEntity<SuccessResponse> getAllFilms() {
+    ResponseEntity<List<Film>> getAllFilms() {
         return filmService.findAll();
     }
 
@@ -60,7 +59,7 @@ public class FilmController {
             }
     )
     @GetMapping("/{id}")
-    ResponseEntity<SuccessResponse> findById(@PathVariable Integer id) {
+    ResponseEntity<Film> findById(@PathVariable Integer id) {
         return filmService.findById(id);
     }
 
@@ -80,12 +79,34 @@ public class FilmController {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
     })
     @PostMapping("")
-    ResponseEntity<SuccessResponse> createFilm(@RequestBody @Valid Film theFilm) {
+    ResponseEntity<Film> createFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(
+                    mediaType = "application/json",
+                    examples = {
+                            @ExampleObject(
+                                    value = "{\n" +
+                                            "  \"title\": \"SLIPPER FIDELITY\",\n" +
+                                            "  \"description\": \"A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention\",\n" +
+                                            "  \"releaseYear\": 2023,\n" +
+                                            "  \"languageId\": 1,\n" +
+                                            "  \"originalLanguageId\": 1,\n" +
+                                            "  \"rentalDuration\": 4,\n" +
+                                            "  \"rentalRate\": 2.99,\n" +
+                                            "  \"length\": 132,\n" +
+                                            "  \"replacementCost\": 27.99,\n" +
+                                            "  \"rating\": \"PG-13\",\n" +
+                                            "  \"specialFeatures\": \"Commentaries,Deleted Scenes\"\n" +
+                                            "}"
+                            )
+                    }
+            )
+    ) @RequestBody @Valid Film theFilm) {
         return filmService.createFilm(theFilm);
     }
 
     @Operation(
             summary = "Update film by ID",
+            parameters = {@Parameter(name = "id", description = "The film id", example = "3")},
             responses = {
                     @ApiResponse(
                             responseCode = "200",
@@ -100,21 +121,42 @@ public class FilmController {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
             })
     @PutMapping("/{id}")
-    ResponseEntity<SuccessResponse> updateActor(@RequestBody @Valid Film theFilm, @PathVariable Integer id) {
+    ResponseEntity<Film> updateActor(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+            content = @Content(
+                    mediaType = "application/json",
+                    examples = {
+                            @ExampleObject(
+                                    value = "{\n" +
+                                            "  \"title\": \"SLIPPER FIDELITY\",\n" +
+                                            "  \"description\": \"A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention\",\n" +
+                                            "  \"releaseYear\": 2023,\n" +
+                                            "  \"languageId\": 1,\n" +
+                                            "  \"originalLanguageId\": 1,\n" +
+                                            "  \"rentalDuration\": 4,\n" +
+                                            "  \"rentalRate\": 2.99,\n" +
+                                            "  \"length\": 132,\n" +
+                                            "  \"replacementCost\": 27.99,\n" +
+                                            "  \"rating\": \"PG-13\",\n" +
+                                            "  \"specialFeatures\": \"Commentaries,Deleted Scenes\"\n" +
+                                            "}"
+                            )
+                    }
+            )
+    ) @RequestBody @Valid Film theFilm, @PathVariable Integer id) {
         return filmService.updateFilm(theFilm, id);
     }
 
     // Delete film
     @Operation(
             summary = "Delete film by ID",
+            parameters = {@Parameter(name = "id", description = "The film id", example = "3")},
             responses = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Deleted the film",
                             content = @Content(
-                                    mediaType = "application/json",
                                     examples = @ExampleObject(
-                                            value = "{\"status\": 200, \"message\": \"Deleted film successfully\", \"data\": null}"
+                                            value = "Deleted film successfully"
                                     )
                             )
 
@@ -122,7 +164,7 @@ public class FilmController {
                     @ApiResponse(responseCode = "404", ref = "resourceNotFoundAPI"),
             })
     @DeleteMapping("/{id}")
-    ResponseEntity<SuccessResponse> deleteFilm(@PathVariable Integer id) {
+    ResponseEntity<String> deleteFilm(@PathVariable Integer id) {
         return filmService.deleteById(id);
     }
 }

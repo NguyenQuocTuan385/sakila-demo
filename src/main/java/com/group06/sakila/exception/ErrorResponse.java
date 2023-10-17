@@ -1,4 +1,4 @@
-package com.group06.sakila.dto.response;
+package com.group06.sakila.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

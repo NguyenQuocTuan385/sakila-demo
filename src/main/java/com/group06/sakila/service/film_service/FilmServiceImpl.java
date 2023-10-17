@@ -1,6 +1,5 @@
 package com.group06.sakila.service.film_service;
 
-import com.group06.sakila.dto.response.SuccessResponse;
 import com.group06.sakila.exception.NotFoundException;
 import com.group06.sakila.entity.Film;
 import com.group06.sakila.repository.FilmRepository;
@@ -18,33 +17,28 @@ public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
 
     @Override
-    public ResponseEntity<SuccessResponse> findAll() {
+    public ResponseEntity<List<Film>> findAll() {
         List<Film> foundFilms = filmRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new SuccessResponse(HttpStatus.OK.value(), "Found all films successfully", foundFilms)
-        );
+        return ResponseEntity.status(HttpStatus.OK).body(foundFilms);
     }
 
     @Override
-    public ResponseEntity<SuccessResponse> findById(Integer theId) { // Optional mean the result can be null
+    public ResponseEntity<Film> findById(Integer theId) { // Optional mean the result can be null
         Film foundFilm = filmRepository.findById(theId).orElse(null);
         if (foundFilm != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    new SuccessResponse(HttpStatus.OK.value(), "Found the film successfully", foundFilm)
-            );
+            return ResponseEntity.status(HttpStatus.OK).body(foundFilm);
         }
         throw new NotFoundException("Cannot find film with id = " + theId);
     }
 
     @Override
-    public ResponseEntity<SuccessResponse> createFilm(Film theFilm) {
-        return ResponseEntity.status(HttpStatus.CREATED). body(
-                new SuccessResponse(HttpStatus.CREATED.value(), "Created the film", filmRepository.save(theFilm))
+    public ResponseEntity<Film> createFilm(Film theFilm) {
+        return ResponseEntity.status(HttpStatus.OK). body(filmRepository.save(theFilm)
         );
     }
 
     @Override
-    public ResponseEntity<SuccessResponse> updateFilm(Film theFilm, Integer theId) {
+    public ResponseEntity<Film> updateFilm(Film theFilm, Integer theId) {
         Film tempFilm = filmRepository.findById(theId).orElse(null);
 
         if (tempFilm != null) {
@@ -60,21 +54,17 @@ public class FilmServiceImpl implements FilmService {
             tempFilm.setSpecialFeatures(theFilm.getSpecialFeatures());
             tempFilm.setLastUpdate(LocalDateTime.now());
 
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    new SuccessResponse(HttpStatus.OK.value(), "Updated the film", filmRepository.save(tempFilm))
-            );
+            return ResponseEntity.status(HttpStatus.OK).body(filmRepository.save(tempFilm));
         }
         throw new NotFoundException("Cannot find film with id = " + theId);
     }
 
     @Override
-    public ResponseEntity<SuccessResponse> deleteById(Integer theId) {
+    public ResponseEntity<String> deleteById(Integer theId) {
         boolean exists = filmRepository.existsById(theId);
         if (exists) {
             filmRepository.deleteById(theId);
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    new SuccessResponse(HttpStatus.OK.value(), "Deleted actor successfully")
-            );
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted actor successfully");
         } else {
             throw new NotFoundException("Cannot find actor with id = " + theId);
         }

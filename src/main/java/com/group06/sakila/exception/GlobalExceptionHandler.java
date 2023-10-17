@@ -1,6 +1,5 @@
 package com.group06.sakila.exception;
 
-import com.group06.sakila.dto.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -26,7 +26,7 @@ public class Film {
     @Column(name = "film_id")
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Title firm is not blank")
     @NotNull(message = "Title film is required")
     @Size(min = 1, max = 255, message = "The length of title film must be between 1 and 255")
     private String title;
@@ -38,8 +38,10 @@ public class Film {
     private Integer releaseYear;
 
     @NotNull(message = "Language id is required")
+    @Min(value = 1, message = "Language id must be greater than 1")
     private Integer languageId;
 
+    @Min(value = 1, message = "Original language id must be greater than 1")
     private Integer originalLanguageId;
 
     @Min(value = 0, message = "Rental duration must be greater than 0")
@@ -61,6 +63,5 @@ public class Film {
     @SetEnumValidator(enumClass = ESpecialFeatures.class, message = "Special features value aren't valid")
     private String specialFeatures;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastUpdate;
 }
