@@ -1,5 +1,6 @@
-package com.group06.sakila.service.film_service;
+package com.group06.sakila.service;
 
+import com.group06.sakila.requestmodel.FilmRequest;
 import com.group06.sakila.entity.Film;
 import org.springframework.http.ResponseEntity;
 
@@ -10,9 +11,9 @@ public interface FilmService {
 
     ResponseEntity<Film> findById(Integer theId);
 
-    ResponseEntity<Film> createFilm(Film theFilm);
+    ResponseEntity<Film> createFilm(FilmRequest theFilm);
 
-    ResponseEntity<Film> updateFilm(Film theFilm, Integer theId);
+    ResponseEntity<Film> updateFilm(FilmRequest theFilm, Integer theId);
 
     ResponseEntity<String> deleteById(Integer theId);
 }

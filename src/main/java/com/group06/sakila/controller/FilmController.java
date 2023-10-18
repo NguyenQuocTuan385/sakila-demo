@@ -1,7 +1,8 @@
 package com.group06.sakila.controller;
 
+import com.group06.sakila.requestmodel.FilmRequest;
 import com.group06.sakila.entity.Film;
-import com.group06.sakila.service.film_service.FilmService;
+import com.group06.sakila.service.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -50,8 +51,26 @@ public class FilmController {
                             responseCode = "200",
                             description = "Found the film",
                             content = @Content(
-                                    schema = @Schema(implementation = Film.class),
-                                    mediaType = "application/json"
+                                    mediaType = "application/json",
+                                    examples = @ExampleObject(
+                                            value = """
+                                                    {
+                                                      "id": 3,
+                                                      "title": "SLIPPER FIDELITY",
+                                                      "description": "A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention",
+                                                      "releaseYear": 2023,
+                                                      "languageId": 1,
+                                                      "originalLanguageId": 1,
+                                                      "rentalDuration": 4,
+                                                      "rentalRate": 2.99,
+                                                      "length": 132,
+                                                      "replacementCost": 27.99,
+                                                      "rating": "PG-13",
+                                                      "specialFeatures": "Commentaries,Deleted Scenes",
+                                                      "lastUpdate": "2006-02-15 05:03:42"                                            
+                                                    }
+                                                    """
+                                    )
                             )
 
                     ),
@@ -84,24 +103,26 @@ public class FilmController {
                     mediaType = "application/json",
                     examples = {
                             @ExampleObject(
-                                    value = "{\n" +
-                                            "  \"title\": \"SLIPPER FIDELITY\",\n" +
-                                            "  \"description\": \"A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention\",\n" +
-                                            "  \"releaseYear\": 2023,\n" +
-                                            "  \"languageId\": 1,\n" +
-                                            "  \"originalLanguageId\": 1,\n" +
-                                            "  \"rentalDuration\": 4,\n" +
-                                            "  \"rentalRate\": 2.99,\n" +
-                                            "  \"length\": 132,\n" +
-                                            "  \"replacementCost\": 27.99,\n" +
-                                            "  \"rating\": \"PG-13\",\n" +
-                                            "  \"specialFeatures\": \"Commentaries,Deleted Scenes\"\n" +
-                                            "}"
+                                    value = """
+                                        {
+                                          "title": "SLIPPER FIDELITY",
+                                          "description": "A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention",
+                                          "releaseYear": 2023,
+                                          "languageId": 1,
+                                          "originalLanguageId": 1,
+                                          "rentalDuration": 4,
+                                          "rentalRate": 2.99,
+                                          "length": 132,
+                                          "replacementCost": 27.99,
+                                          "rating": "PG-13",
+                                          "specialFeatures": "Commentaries,Deleted Scenes"
+                                        }
+                                        """
                             )
                     }
             )
-    ) @RequestBody @Valid Film theFilm) {
-        return filmService.createFilm(theFilm);
+    ) @RequestBody @Valid FilmRequest filmRequest) {
+        return filmService.createFilm(filmRequest);
     }
 
     @Operation(
@@ -126,24 +147,26 @@ public class FilmController {
                     mediaType = "application/json",
                     examples = {
                             @ExampleObject(
-                                    value = "{\n" +
-                                            "  \"title\": \"SLIPPER FIDELITY\",\n" +
-                                            "  \"description\": \"A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention\",\n" +
-                                            "  \"releaseYear\": 2023,\n" +
-                                            "  \"languageId\": 1,\n" +
-                                            "  \"originalLanguageId\": 1,\n" +
-                                            "  \"rentalDuration\": 4,\n" +
-                                            "  \"rentalRate\": 2.99,\n" +
-                                            "  \"length\": 132,\n" +
-                                            "  \"replacementCost\": 27.99,\n" +
-                                            "  \"rating\": \"PG-13\",\n" +
-                                            "  \"specialFeatures\": \"Commentaries,Deleted Scenes\"\n" +
-                                            "}"
+                                    value = """
+                                            {
+                                              "title": "SLIPPER FIDELITY",
+                                              "description": "A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention",
+                                              "releaseYear": 2023,
+                                              "languageId": 1,
+                                              "originalLanguageId": 1,
+                                              "rentalDuration": 4,
+                                              "rentalRate": 2.99,
+                                              "length": 132,
+                                              "replacementCost": 27.99,
+                                              "rating": "PG-13",
+                                              "specialFeatures": "Commentaries,Deleted Scenes"
+                                            }
+                                            """
                             )
                     }
             )
-    ) @RequestBody @Valid Film theFilm, @PathVariable Integer id) {
-        return filmService.updateFilm(theFilm, id);
+    ) @RequestBody @Valid FilmRequest filmRequest, @PathVariable Integer id) {
+        return filmService.updateFilm(filmRequest, id);
     }
 
     // Delete film

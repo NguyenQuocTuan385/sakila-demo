@@ -1,5 +1,6 @@
 package com.group06.sakila.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +19,6 @@ public class Actor {
     private Long id;
     private String firstName;
     private String  lastName;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastUpdate;
 }

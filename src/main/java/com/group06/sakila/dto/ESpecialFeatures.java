@@ -1,4 +1,4 @@
-package com.group06.sakila.enums;
+package com.group06.sakila.dto;
 
 public enum ESpecialFeatures {
     TRAILERS("Trailers"),
