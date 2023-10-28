@@ -5,6 +5,9 @@ import com.group06.sakila.exception.ErrorResponse;
 import com.group06.sakila.requestmodel.ActorRequest;
 import com.group06.sakila.service.ActorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -48,12 +51,58 @@ public class ActorController {
     }
 
     //Update actor
-    @Operation(summary = "Update actor by ID")
-    @ApiResponse(responseCode = "200", description = "Updated the actor")
-    @ApiResponse(responseCode = "400", description = "Invalid input")
-    @ApiResponse(responseCode = "404", description = "actor not found")
+    @Operation(
+            parameters = {@Parameter(name = "id", description = "This is the id of student that we want to update", example = "3")},
+            summary = "Update actor with ID",
+            description = "Update the actor with the matching input ID given by client",
+            responses = {@ApiResponse(responseCode = "200", description = "Updated Actor",
+                    content = {@Content(mediaType = "application/json",
+                            examples = @ExampleObject(value = """
+                               {
+                                  "id": 3,
+                                  "firstName": "Tien",
+                                  "lastName": "Truong",
+                                  "lastUpdate": "2023-10-25T17:13:05.779Z"
+                                }
+                                                       """)),
+                            @Content(mediaType = "text/plain",
+                                    examples = @ExampleObject(value = """
+                                            id: 3,firstName: Tien, lastName: Truong, lastUpdate: 2023-10-25T17:13:05.779Z"""))}),
+                    @ApiResponse(responseCode = "404", description = "Not Found Actor",
+                            content = @Content(mediaType = "application/json",
+                                    examples = @ExampleObject(value = """
+                                               {
+                                                  "status": 404,
+                                                  "message": "Cannot find actor with provided id",
+                                                  "errorDetails": null
+                                               }
+                                           """))
+                    ),
+                    @ApiResponse(responseCode = "400", description = "Invalid parameter value",
+                            content = @Content(mediaType = "application/json",
+                                    examples = @ExampleObject(value = """
+                                          {
+                                              "status": 400,
+                                              "message": "Invalid parameter value",
+                                              "errorDetails": {}
+                                          }
+                                       """)))
+            }
+    )
+
     @PutMapping("/{id}")
-    ResponseEntity<Actor> updateActor(@RequestBody @Valid ActorRequest actorRequest, @PathVariable Long id) {
+    ResponseEntity<Actor> updateActor(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "This is description for response",
+            content = @Content(
+                    mediaType = "application/json",
+                    examples = @ExampleObject(value = """
+                           {
+                                   "firstName": "Tien",
+                                   "lastName": "Truong"
+                           }
+                       """)
+            )) @RequestBody @Valid ActorRequest actorRequest,
+            @PathVariable Long id) {
         return actorService.updateActor(actorRequest, id);
     }
 
