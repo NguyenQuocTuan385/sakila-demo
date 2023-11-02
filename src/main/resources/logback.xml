@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="DEV_HOME" value="logs" />
+    <property name="DEV_HOME" value="logs"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -34,12 +34,31 @@
         </rollingPolicy>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="STDOUT" />
-    </root>
+    <appender name="TELEGRAM"
+              class="com.github.paolodenti.telegram.logback.TelegramAppender">
+        <botToken>6542871568:AAGFF5iGLn-k4aoxQH5RgDSwlVtEqE1nN4A</botToken>
+        <chatId>-4004132640</chatId>
+        <Layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+        </Layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+    <loggers>
+        <logger name="com.github.paolodenti.telegram.logback" level="DEBUG">
+            <appender-ref ref="TELEGRAM"/>
+        </logger>
 
-    <logger name="com.group06.sakila.service" level="debug" additivity="false">
-        <appender-ref ref="DEBUG-FILE" />
-        <appender-ref ref="STDOUT" />
-    </logger>
+        <logger name="com.group06.sakila.service" level="debug" additivity="false">
+            <appender-ref ref="DEBUG-FILE"/>
+            <appender-ref ref="STDOUT"/>
+        </logger>
+    </loggers>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="TELEGRAM"/>
+        <appender-ref ref="DEBUG-FILE"/>
+    </root>
 </configuration>

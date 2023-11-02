@@ -24,3 +24,113 @@
 2023-11-01 20:54:01,285 DEBUG c.g.s.s.ActorServiceImpl [http-nio-8080-exec-2] This is find actor by id method
 2023-11-01 20:54:01,453 ERROR c.g.s.s.ActorServiceImpl [http-nio-8080-exec-2] Cannot find actor with id = 2052.
 2023-11-01 20:54:01,521 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-2] Filter: METHOD = GET; REQUEST URI = /api/actors/2052; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindactorwithid=2052","errorDetails":null}
+2023-11-02 08:43:41,444 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is create film method
+2023-11-02 08:43:41,445 INFO c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Created new film: FilmRequest(title=SLIPPER FIDELITY, description=A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention, releaseYear=null, languageId=1, originalLanguageId=1, rentalDuration=4, rentalRate=2.99, length=132, replacementCost=27.99, rating=PG-13, specialFeatures=Commentaries,Deleted Scenes)
+2023-11-02 08:43:41,921 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = POST; REQUEST URI = /api/films; REQUEST BODY = {"title":"SLIPPERFIDELITY","description":"ATautReflectionofaSecretAgentAndaManwhomustRedeemaExplorerinAMySQLConvention","resdfdsfleaseYear":2023,"languageId":1,"originalLanguageId":1,"rentalDuration":4,"rentalRate":2.99,"length":132,"replacementCost":27.99,"rating":"PG-13","specialFeatures":"Commentaries,DeletedScenes"}; RESPONSE CODE = 200; RESPONSE BODY = {"id":1009,"title":"SLIPPERFIDELITY","description":"ATautReflectionofaSecretAgentAndaManwhomustRedeemaExplorerinAMySQLConvention","releaseYear":null,"languageId":1,"originalLanguageId":1,"rentalDuration":4,"rentalRate":2.99,"length":132,"replacementCost":27.99,"rating":"PG-13","specialFeatures":"Commentaries,DeletedScenes","lastUpdate":"2023-11-0208:43:41"}
+2023-11-02 08:44:17,053 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-3] Filter: METHOD = POST; REQUEST URI = /api/films; REQUEST BODY = {}; RESPONSE CODE = 400; RESPONSE BODY = {"status":400,"message":"Invalidparameters","errorDetails":{"rentalRate":"Rentalrateisrequired","rentalDuration":"Rentaldurationisrequired","languageId":"Languageidisrequired","replacementCost":"Replacementcostisrequired","title":"Titlefilmisrequired"}}
+2023-11-02 08:45:49,356 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-4] This is find film by id method
+2023-11-02 08:45:49,448 INFO c.g.s.s.FilmServiceImpl [http-nio-8080-exec-4] Found film with id = 1000.
+2023-11-02 08:45:49,452 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-4] Filter: METHOD = GET; REQUEST URI = /api/films/1000; REQUEST BODY = ; RESPONSE CODE = 200; RESPONSE BODY = {"id":1000,"title":"ZORROARK","description":"AIntrepidPanoramaofaMadScientistAndaBoywhomustRedeemaBoyinAMonastery","releaseYear":2006,"languageId":1,"originalLanguageId":null,"rentalDuration":3,"rentalRate":4.99,"length":50,"replacementCost":18.99,"rating":"NC-17","specialFeatures":"Trailers,Commentaries,BehindtheScenes","lastUpdate":"2006-02-1505:03:42"}
+2023-11-02 08:46:12,543 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-6] This is find film by id method
+2023-11-02 08:46:12,553 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-6] Cannot find film with id = 213123.
+2023-11-02 08:46:12,559 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-6] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 09:05:22,162 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is find film by id method
+2023-11-02 09:05:22,224 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213123.
+2023-11-02 09:05:22,272 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 09:08:09,151 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is find film by id method
+2023-11-02 09:08:09,214 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213123.
+2023-11-02 09:08:09,720 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 08:43:41,444 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is create film method
+2023-11-02 08:43:41,445 INFO c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Created new film: FilmRequest(title=SLIPPER FIDELITY, description=A Taut Reflection of a Secret Agent And a Man who must Redeem a Explorer in A MySQL Convention, releaseYear=null, languageId=1, originalLanguageId=1, rentalDuration=4, rentalRate=2.99, length=132, replacementCost=27.99, rating=PG-13, specialFeatures=Commentaries,Deleted Scenes)
+2023-11-02 08:43:41,921 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = POST; REQUEST URI = /api/films; REQUEST BODY = {"title":"SLIPPERFIDELITY","description":"ATautReflectionofaSecretAgentAndaManwhomustRedeemaExplorerinAMySQLConvention","resdfdsfleaseYear":2023,"languageId":1,"originalLanguageId":1,"rentalDuration":4,"rentalRate":2.99,"length":132,"replacementCost":27.99,"rating":"PG-13","specialFeatures":"Commentaries,DeletedScenes"}; RESPONSE CODE = 200; RESPONSE BODY = {"id":1009,"title":"SLIPPERFIDELITY","description":"ATautReflectionofaSecretAgentAndaManwhomustRedeemaExplorerinAMySQLConvention","releaseYear":null,"languageId":1,"originalLanguageId":1,"rentalDuration":4,"rentalRate":2.99,"length":132,"replacementCost":27.99,"rating":"PG-13","specialFeatures":"Commentaries,DeletedScenes","lastUpdate":"2023-11-0208:43:41"}
+2023-11-02 08:44:17,053 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-3] Filter: METHOD = POST; REQUEST URI = /api/films; REQUEST BODY = {}; RESPONSE CODE = 400; RESPONSE BODY = {"status":400,"message":"Invalidparameters","errorDetails":{"rentalRate":"Rentalrateisrequired","rentalDuration":"Rentaldurationisrequired","languageId":"Languageidisrequired","replacementCost":"Replacementcostisrequired","title":"Titlefilmisrequired"}}
+2023-11-02 08:45:49,356 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-4] This is find film by id method
+2023-11-02 08:45:49,448 INFO c.g.s.s.FilmServiceImpl [http-nio-8080-exec-4] Found film with id = 1000.
+2023-11-02 08:45:49,452 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-4] Filter: METHOD = GET; REQUEST URI = /api/films/1000; REQUEST BODY = ; RESPONSE CODE = 200; RESPONSE BODY = {"id":1000,"title":"ZORROARK","description":"AIntrepidPanoramaofaMadScientistAndaBoywhomustRedeemaBoyinAMonastery","releaseYear":2006,"languageId":1,"originalLanguageId":null,"rentalDuration":3,"rentalRate":4.99,"length":50,"replacementCost":18.99,"rating":"NC-17","specialFeatures":"Trailers,Commentaries,BehindtheScenes","lastUpdate":"2006-02-1505:03:42"}
+2023-11-02 08:46:12,543 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-6] This is find film by id method
+2023-11-02 08:46:12,553 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-6] Cannot find film with id = 213123.
+2023-11-02 08:46:12,559 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-6] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 09:05:22,162 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is find film by id method
+2023-11-02 09:05:22,224 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213123.
+2023-11-02 09:05:22,272 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 09:08:09,151 DEBUG c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] This is find film by id method
+2023-11-02 09:08:09,214 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213123.
+2023-11-02 09:08:09,720 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213123","errorDetails":null}
+2023-11-02 09:14:40,435 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2023-11-02 09:14:40,460 INFO o.s.b.StartupInfoLogger [restartedMain] Starting SakilaApplication using Java 19 with PID 8924 (D:\Code\University of Science\SpringBoot\sakila-demo\target\classes started by Admin in D:\Code\University of Science\SpringBoot\sakila-demo)
+2023-11-02 09:14:40,461 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-11-02 09:14:40,496 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-02 09:14:40,497 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-02 09:14:41,061 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-02 09:14:41,112 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
+2023-11-02 09:14:41,546 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-11-02 09:14:41,552 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-11-02 09:14:41,554 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-11-02 09:14:41,554 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-11-02 09:14:41,608 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-11-02 09:14:41,608 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1111 ms
+2023-11-02 09:14:41,745 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-11-02 09:14:42,358 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bd82321
+2023-11-02 09:14:42,359 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-11-02 09:14:42,400 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-02 09:14:42,471 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-11-02 09:14:42,473 INFO o.h.c.Environment [restartedMain] HHH000406: Using bytecode reflection optimizer
+2023-11-02 09:14:42,653 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-11-02 09:14:42,826 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-02 09:14:43,124 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-11-02 09:14:43,770 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-02 09:14:43,772 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-02 09:14:44,275 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-02 09:14:44,674 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-11-02 09:14:44,689 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-11-02 09:14:44,720 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-02 09:14:44,727 INFO o.s.b.StartupInfoLogger [restartedMain] Started SakilaApplication in 4.543 seconds (process running for 5.473)
+2023-11-02 09:15:10,270 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-02 09:15:10,270 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-11-02 09:15:10,272 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-11-02 09:15:10,374 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213128.
+2023-11-02 09:15:10,427 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [com.group06.sakila.exception.NotFoundException: Cannot find film with id = 213128]
+2023-11-02 09:15:10,429 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213128; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213128","errorDetails":null}
+2023-11-02 09:19:15,361 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-02 09:19:15,409 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-11-02 09:19:15,462 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-11-02 09:21:31,170 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2023-11-02 09:21:31,194 INFO o.s.b.StartupInfoLogger [restartedMain] Starting SakilaApplication using Java 19 with PID 14564 (D:\Code\University of Science\SpringBoot\sakila-demo\target\classes started by Admin in D:\Code\University of Science\SpringBoot\sakila-demo)
+2023-11-02 09:21:31,195 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-11-02 09:21:31,231 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-02 09:21:31,231 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-02 09:21:31,928 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-02 09:21:31,992 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 56 ms. Found 2 JPA repository interfaces.
+2023-11-02 09:21:32,481 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-11-02 09:21:32,487 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-11-02 09:21:32,489 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-11-02 09:21:32,489 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-11-02 09:21:32,540 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-11-02 09:21:32,540 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1308 ms
+2023-11-02 09:21:32,648 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-11-02 09:21:33,102 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@20fd6287
+2023-11-02 09:21:33,103 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-11-02 09:21:33,138 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-02 09:21:33,209 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-11-02 09:21:33,211 INFO o.h.c.Environment [restartedMain] HHH000406: Using bytecode reflection optimizer
+2023-11-02 09:21:33,393 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-11-02 09:21:33,520 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-02 09:21:33,764 INFO o.h.b.i.BytecodeProviderInitiator [restartedMain] HHH000021: Bytecode provider name : bytebuddy
+2023-11-02 09:21:34,417 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-02 09:21:34,420 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-02 09:21:34,806 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-02 09:21:35,112 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-11-02 09:21:35,125 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-11-02 09:21:35,145 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-02 09:21:35,152 INFO o.s.b.StartupInfoLogger [restartedMain] Started SakilaApplication in 4.249 seconds (process running for 5.361)
+2023-11-02 09:21:52,689 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-02 09:21:52,689 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-11-02 09:21:52,690 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2023-11-02 09:21:52,790 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-1] Cannot find film with id = 213128.
+2023-11-02 09:21:52,840 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [com.group06.sakila.exception.NotFoundException: Cannot find film with id = 213128]
+2023-11-02 09:21:52,840 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-1] Filter: METHOD = GET; REQUEST URI = /api/films/213128; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=213128","errorDetails":null}
+2023-11-02 09:22:37,078 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('s' (code 115)): was expecting double-quote to start field name]
+2023-11-02 09:22:37,080 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-3] Filter: METHOD = POST; REQUEST URI = /api/films; REQUEST BODY = {sdfdsfdsfsdfsdf}; RESPONSE CODE = 500; RESPONSE BODY = {"status":500,"message":"Unknownerror","errorDetails":null}
+2023-11-02 09:22:50,854 ERROR c.g.s.s.FilmServiceImpl [http-nio-8080-exec-4] Cannot find film with id = 2133213123.
+2023-11-02 09:22:50,856 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [com.group06.sakila.exception.NotFoundException: Cannot find film with id = 2133213123]
+2023-11-02 09:22:50,856 INFO c.g.s.f.FilterLogging [http-nio-8080-exec-4] Filter: METHOD = GET; REQUEST URI = /api/films/2133213123; REQUEST BODY = ; RESPONSE CODE = 404; RESPONSE BODY = {"status":404,"message":"Cannotfindfilmwithid=2133213123","errorDetails":null}
