@@ -19,32 +19,25 @@ import java.util.List;
 @AllArgsConstructor
 public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
-    private static final Logger logger = LoggerFactory.getLogger(FilmServiceImpl.class);
 
     @Override
     public ResponseEntity<List<Film>> findAll() {
-        logger.debug("This is find all films method");
         List<Film> foundFilms = filmRepository.findAll();
-        logger.info("Found {} films.", foundFilms.size());
         return ResponseEntity.status(HttpStatus.OK).body(foundFilms);
     }
 
     @Override
     public ResponseEntity<Film> findById(Integer theId) { // Optional mean the result can be null
-        logger.debug("This is find film by id method");
         Film foundFilm = filmRepository.findById(theId).orElse(null);
 
         if (foundFilm != null) {
-            logger.info("Found film with id = {}.", theId);
             return ResponseEntity.status(HttpStatus.OK).body(foundFilm);
         }
-        logger.error("Cannot find film with id = {}.", theId);
         throw new NotFoundException("Cannot find film with id = " + theId);
     }
 
     @Override
     public ResponseEntity<Film> createFilm(FilmRequest filmRequest) {
-        logger.debug("This is create film method");
         Film filmSaved = new Film();
         filmSaved.setTitle(filmRequest.getTitle());
         filmSaved.setDescription(filmRequest.getDescription());
@@ -59,13 +52,11 @@ public class FilmServiceImpl implements FilmService {
         filmSaved.setSpecialFeatures(filmRequest.getSpecialFeatures());
         filmSaved.setLastUpdate(LocalDateTime.now());
 
-        logger.info("Created new film: {}", filmRequest);
         return ResponseEntity.status(HttpStatus.OK).body(filmRepository.save(filmSaved));
     }
 
     @Override
     public ResponseEntity<Film> updateFilm(FilmRequest filmRequest, Integer theId) {
-        logger.debug("This is update film method");
         Film tempFilm = filmRepository.findById(theId).orElse(null);
 
         if (tempFilm != null) {
@@ -82,10 +73,8 @@ public class FilmServiceImpl implements FilmService {
             tempFilm.setSpecialFeatures(filmRequest.getSpecialFeatures());
             tempFilm.setLastUpdate(LocalDateTime.now());
 
-            logger.info("Updated new film: {}", filmRequest);
             return ResponseEntity.status(HttpStatus.OK).body(filmRepository.save(tempFilm));
         }
-        logger.error("Cannot find film with id = {} for update.", theId);
         throw new NotFoundException("Cannot find film with id = " + theId);
     }
 
