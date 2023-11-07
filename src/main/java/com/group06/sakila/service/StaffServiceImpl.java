@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,7 @@ public class StaffServiceImpl implements StaffService {
     public Staff createStaff(StaffRegisterRequest staffRequest) {
         String username = staffRequest.getUsername();
         if (staffRepository.existsByUsername(username)) {
-            throw new DataIntegrityViolationException("Email already exists");
+            throw new DataIntegrityViolationException("Username already exists");
         }
         Staff newStaff = Staff.builder()
                 .firstName(staffRequest.getFirstName())
@@ -38,6 +39,7 @@ public class StaffServiceImpl implements StaffService {
                 .picture(staffRequest.getPicture())
                 .password(staffRequest.getPassword())
                 .active(true)
+                .lastUpdate(LocalDateTime.now())
                 .build();
         String password = staffRequest.getPassword();
         String encodePassword = passwordEncoder.encode(password);

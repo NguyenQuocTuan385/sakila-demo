@@ -35,7 +35,7 @@ public class JwtTokenUtil {
         try {
             return Jwts.builder()
                     .setClaims(claims) //how to extract claims from this ?
-                    .setSubject(staff.getEmail())
+                    .setSubject(staff.getUsername())
                     .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000L))
                     .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                     .compact();
@@ -51,7 +51,8 @@ public class JwtTokenUtil {
         SecureRandom random = new SecureRandom();
         byte[] keyBytes = new byte[32]; // 256-bit key
         random.nextBytes(keyBytes);
-        return Encoders.BASE64.encode(keyBytes);
+        String secretKey = Encoders.BASE64.encode(keyBytes);
+        return secretKey;
     }
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
@@ -73,8 +74,8 @@ public class JwtTokenUtil {
         return extractClaim(token, Claims::getSubject);
     }
     public boolean validateToken(String token, UserDetails userDetails) {
-        String email = extractUsername(token);
-        return (email.equals(userDetails.getUsername()))
+        String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()))
                 && !isTokenExpired(token);
     }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/actors")
+@RequestMapping("${api.prefix}/actors")
 @Tag(name = "Actors API")
 public class ActorController {
     private ActorService actorService;

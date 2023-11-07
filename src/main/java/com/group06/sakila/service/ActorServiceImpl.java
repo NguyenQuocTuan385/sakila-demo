@@ -41,13 +41,15 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor createActor(ActorRequest actorRequest) {
         logger.debug("This is create actor method");
-        Actor actorSaved = new Actor();
-        actorSaved.setFirstName(actorRequest.getFirstName());
-        actorSaved.setLastName(actorRequest.getLastName());
-        actorSaved.setLastUpdate(LocalDateTime.now());
+        Actor actorSaved = Actor.builder()
+                .firstName(actorRequest.getFirstName())
+                .lastName(actorRequest.getLastName())
+                .lastUpdate(LocalDateTime.now())
+                .build();
 
+        Actor newActor = actorRepository.save(actorSaved);
         logger.info("Created new actor: {}", actorRequest);
-        return actorRepository.save(actorSaved);
+        return newActor;
     }
 
     @Override
@@ -62,8 +64,9 @@ public class ActorServiceImpl implements ActorService {
         tempActor.setFirstName(actorRequest.getFirstName());
         tempActor.setLastName(actorRequest.getLastName());
 
+        Actor savedActor = actorRepository.save(tempActor);
         logger.info("Updated actor with id = {}: {}", theId, actorRequest);
-        return actorRepository.save(tempActor);
+        return savedActor;
     }
 
     @Override

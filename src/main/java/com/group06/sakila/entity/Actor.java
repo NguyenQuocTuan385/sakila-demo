@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+@Builder
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

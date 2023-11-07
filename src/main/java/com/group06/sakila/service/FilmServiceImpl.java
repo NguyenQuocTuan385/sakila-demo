@@ -42,22 +42,24 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public Film createFilm(FilmRequest filmRequest) {
         logger.debug("This is create film method");
-        Film filmSaved = new Film();
-        filmSaved.setTitle(filmRequest.getTitle());
-        filmSaved.setDescription(filmRequest.getDescription());
-        filmSaved.setReleaseYear(filmRequest.getReleaseYear());
-        filmSaved.setLanguageId(filmRequest.getLanguageId());
-        filmSaved.setOriginalLanguageId(filmRequest.getOriginalLanguageId());
-        filmSaved.setRentalDuration(filmRequest.getRentalDuration());
-        filmSaved.setRentalRate(filmRequest.getRentalRate());
-        filmSaved.setLength(filmRequest.getLength());
-        filmSaved.setReplacementCost(filmRequest.getReplacementCost());
-        filmSaved.setRating(filmRequest.getRating());
-        filmSaved.setSpecialFeatures(filmRequest.getSpecialFeatures());
-        filmSaved.setLastUpdate(LocalDateTime.now());
+        Film filmSaved = Film.builder()
+                .title(filmRequest.getTitle())
+                .description(filmRequest.getDescription())
+                .releaseYear(filmRequest.getReleaseYear())
+                .languageId(filmRequest.getLanguageId())
+                .originalLanguageId(filmRequest.getOriginalLanguageId())
+                .rentalDuration(filmRequest.getRentalDuration())
+                .rentalRate(filmRequest.getRentalRate())
+                .length(filmRequest.getLength())
+                .replacementCost(filmRequest.getReplacementCost())
+                .rating(filmRequest.getRating())
+                .specialFeatures(filmRequest.getSpecialFeatures())
+                .lastUpdate(LocalDateTime.now())
+                .build();
 
+        Film newFilm = filmRepository.save(filmSaved);
         logger.info("Created new film: {}", filmRequest);
-        return filmRepository.save(filmSaved);
+        return newFilm;
     }
 
     @Override
@@ -82,8 +84,9 @@ public class FilmServiceImpl implements FilmService {
         tempFilm.setSpecialFeatures(filmRequest.getSpecialFeatures());
         tempFilm.setLastUpdate(LocalDateTime.now());
 
+        Film savedFilm = filmRepository.save(tempFilm);
         logger.info("Updated new film: {}", filmRequest);
-        return filmRepository.save(tempFilm);
+        return savedFilm;
     }
 
     @Override
