@@ -1,6 +1,6 @@
 package com.group06.sakila.controller;
 
-import com.group06.sakila.requestmodel.FilmRequest;
+import com.group06.sakila.request_model.FilmRequest;
 import com.group06.sakila.entity.Film;
 import com.group06.sakila.service.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class FilmController {
     )
     @GetMapping("")
     ResponseEntity<List<Film>> getAllFilms() {
-        return filmService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.findAll());
     }
 
     @Operation(
@@ -79,7 +80,7 @@ public class FilmController {
     )
     @GetMapping("/{id}")
     ResponseEntity<Film> findById(@PathVariable Integer id) {
-        return filmService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.findById(id));
     }
 
     //Create film
@@ -122,7 +123,7 @@ public class FilmController {
                     }
             )
     ) @RequestBody @Valid FilmRequest filmRequest) {
-        return filmService.createFilm(filmRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(filmService.createFilm(filmRequest));
     }
 
     @Operation(
@@ -142,7 +143,7 @@ public class FilmController {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
             })
     @PutMapping("/{id}")
-    ResponseEntity<Film> updateActor(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+    ResponseEntity<Film> updateFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
                     mediaType = "application/json",
                     examples = {
@@ -166,7 +167,7 @@ public class FilmController {
                     }
             )
     ) @RequestBody @Valid FilmRequest filmRequest, @PathVariable Integer id) {
-        return filmService.updateFilm(filmRequest, id);
+        return ResponseEntity.status(HttpStatus.OK).body(filmService.updateFilm(filmRequest, id));
     }
 
     // Delete film
@@ -187,7 +188,8 @@ public class FilmController {
                     @ApiResponse(responseCode = "404", ref = "resourceNotFoundAPI"),
             })
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteFilm(@PathVariable Integer id) {
-        return filmService.deleteById(id);
+    ResponseEntity<?> deleteFilm(@PathVariable Integer id) {
+        filmService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Deleted film successfully");
     }
 }

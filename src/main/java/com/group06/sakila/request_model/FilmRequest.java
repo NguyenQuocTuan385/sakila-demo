@@ -1,7 +1,7 @@
-package com.group06.sakila.requestmodel;
+package com.group06.sakila.request_model;
 
-import com.group06.sakila.dto.ERating;
-import com.group06.sakila.dto.ESpecialFeatures;
+import com.group06.sakila.enums.ERating;
+import com.group06.sakila.enums.ESpecialFeatures;
 import com.group06.sakila.validation.EnumValidator;
 import com.group06.sakila.validation.SetEnumValidator;
 import jakarta.validation.constraints.*;

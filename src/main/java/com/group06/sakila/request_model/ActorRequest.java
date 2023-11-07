@@ -1,4 +1,4 @@
-package com.group06.sakila.requestmodel;
+package com.group06.sakila.request_model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

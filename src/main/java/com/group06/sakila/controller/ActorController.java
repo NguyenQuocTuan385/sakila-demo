@@ -1,8 +1,7 @@
 package com.group06.sakila.controller;
 
 import com.group06.sakila.entity.Actor;
-import com.group06.sakila.exception.ErrorResponse;
-import com.group06.sakila.requestmodel.ActorRequest;
+import com.group06.sakila.request_model.ActorRequest;
 import com.group06.sakila.service.ActorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ public class ActorController {
     @ApiResponse(responseCode = "200", description = "List of actors")
     @GetMapping("")
     ResponseEntity<List<Actor>> getAllActors() {
-        return actorService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(actorService.findAll());
     }
 
     //Get detail actor
@@ -38,7 +38,7 @@ public class ActorController {
     @ApiResponse(responseCode = "404", description = "Actor not found")
     @GetMapping("/{id}")
     ResponseEntity<Actor> findById(@PathVariable Long id) {
-        return actorService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(actorService.findById(id));
     }
 
     //Create actor
@@ -47,7 +47,7 @@ public class ActorController {
     @ApiResponse(responseCode = "400", description = "Invalid input")
     @PostMapping("")
     ResponseEntity<Actor> createActor(@RequestBody @Valid ActorRequest actorRequest) {
-        return actorService.createActor(actorRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(actorService.createActor(actorRequest));
     }
 
     //Update actor
@@ -103,7 +103,7 @@ public class ActorController {
                        """)
             )) @RequestBody @Valid ActorRequest actorRequest,
             @PathVariable Long id) {
-        return actorService.updateActor(actorRequest, id);
+        return ResponseEntity.status(HttpStatus.OK).body(actorService.updateActor(actorRequest, id));
     }
 
     // Delete actor
@@ -112,6 +112,7 @@ public class ActorController {
     @ApiResponse(responseCode = "404", description = "Actor not found")
     @DeleteMapping("/{id}")
     ResponseEntity<String > deleteActor(@PathVariable Long id) {
-        return actorService.deleteById(id);
+        actorService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Deleted actor successfully");
     }
 }
