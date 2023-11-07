@@ -20,11 +20,11 @@ public class SecurityConfig {
     //user's detail object
     @Bean
     public UserDetailsService userDetailsService() {
-        return email -> staffRepository
-                .findByEmail(email)
+        return username -> staffRepository
+                .findByUsername(username)
                 .orElseThrow(() ->
                         new UsernameNotFoundException(
-                                "Cannot find staff with email = " + email));
+                                "Cannot find staff with email = " + username));
     }
 
     @Bean

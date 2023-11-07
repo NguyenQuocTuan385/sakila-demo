@@ -24,8 +24,8 @@ public class StaffServiceImpl implements StaffService {
     private final AuthenticationManager authenticationManager;
     @Override
     public Staff createStaff(StaffRegisterRequest staffRequest) {
-        String email = staffRequest.getEmail();
-        if (staffRepository.existsByEmail(email)) {
+        String username = staffRequest.getUsername();
+        if (staffRepository.existsByUsername(username)) {
             throw new DataIntegrityViolationException("Email already exists");
         }
         Staff newStaff = Staff.builder()
@@ -34,7 +34,7 @@ public class StaffServiceImpl implements StaffService {
                 .addressId(staffRequest.getAddressId())
                 .email(staffRequest.getEmail())
                 .storeId(staffRequest.getStoreId())
-                .name(staffRequest.getUsername())
+                .username(staffRequest.getUsername())
                 .picture(staffRequest.getPicture())
                 .password(staffRequest.getPassword())
                 .active(true)
@@ -46,8 +46,8 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public String login(String email, String password) throws Exception {
-        Optional<Staff> optionalStaff = staffRepository.findByEmail(email);
+    public String login(String username, String password) throws Exception {
+        Optional<Staff> optionalStaff = staffRepository.findByUsername(username);
         if (optionalStaff.isEmpty())
             throw new NotFoundException("Invalid username / password");
         Staff existingStaff = optionalStaff.get();
@@ -55,7 +55,7 @@ public class StaffServiceImpl implements StaffService {
             throw new BadCredentialsException("Wrong password");
         }
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                email, password,
+                username, password,
                 existingStaff.getAuthorities()
         );
         authenticationManager.authenticate(authenticationToken);

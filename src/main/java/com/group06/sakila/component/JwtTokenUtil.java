@@ -1,6 +1,7 @@
 package com.group06.sakila.component;
 
 import com.group06.sakila.entity.Staff;
+import com.group06.sakila.exception.InvalidParameter;
 import com.group06.sakila.exception.NotFoundException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -29,8 +30,8 @@ public class JwtTokenUtil {
     private String secretKey;
     public String generateToken(Staff staff) throws Exception{
         Map<String, Object> claims = new HashMap<>();
-        this.generateSecretKey();
-        claims.put("email", staff.getEmail());
+//        this.generateSecretKey();
+        claims.put("username", staff.getUsername());
         try {
             return Jwts.builder()
                     .setClaims(claims) //how to extract claims from this ?
@@ -39,7 +40,7 @@ public class JwtTokenUtil {
                     .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                     .compact();
         }catch (Exception e) {
-            throw new NotFoundException("Cannot create jwt token, error: "+e.getMessage());
+            throw new InvalidParameter("Cannot create jwt token, error: "+e.getMessage());
         }
     }
     private Key getSignInKey() {
@@ -50,8 +51,7 @@ public class JwtTokenUtil {
         SecureRandom random = new SecureRandom();
         byte[] keyBytes = new byte[32]; // 256-bit key
         random.nextBytes(keyBytes);
-        String secretKey = Encoders.BASE64.encode(keyBytes);
-        return secretKey;
+        return Encoders.BASE64.encode(keyBytes);
     }
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
@@ -69,11 +69,11 @@ public class JwtTokenUtil {
         Date expirationDate = this.extractClaim(token, Claims::getExpiration);
         return expirationDate.before(new Date());
     }
-    public String extractEmail(String token) {
+    public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
     public boolean validateToken(String token, UserDetails userDetails) {
-        String email = extractEmail(token);
+        String email = extractUsername(token);
         return (email.equals(userDetails.getUsername()))
                 && !isTokenExpired(token);
     }

@@ -17,15 +17,18 @@ public class StaffController {
     private final StaffService staffService;
 
     @PostMapping("/register")
-    ResponseEntity<Staff> register(@RequestBody @Valid StaffRegisterRequest staffRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(staffService.createStaff(staffRequest));
+    ResponseEntity<?> register(@RequestBody @Valid StaffRegisterRequest staffRequest) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(staffService.createStaff(staffRequest));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody StaffLoginRequest staffLogin) {
         try {
-//            String token = userService.login(userLoginDTO.getPhoneNumber(), userLoginDTO.getPassword());
-            return ResponseEntity.status(HttpStatus.OK).body(staffService.login(staffLogin.getEmail(), staffLogin.getPassword()));
+            return ResponseEntity.status(HttpStatus.OK).body(staffService.login(staffLogin.getUsername(), staffLogin.getPassword()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

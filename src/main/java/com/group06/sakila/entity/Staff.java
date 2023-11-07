@@ -33,7 +33,7 @@ public class Staff implements UserDetails {
     private boolean active;
 
     @Column(name = "username")
-    private String name;
+    private String username;
 
     private String password;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -48,7 +48,7 @@ public class Staff implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override

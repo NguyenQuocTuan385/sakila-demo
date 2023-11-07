@@ -6,6 +6,6 @@ spring:
 
 jwt:
   expiration: 2592000
-  secretKey: VC9eQ+bA5ZmvtWtNtGSsZgfEkbYeDUeco6qaZv4sYRU=
+  secretKey: VzzO3+vn3QqsXwTkp982RniBlw+t6PwgIKMX+OMW+78=
 api:
   prefix: api

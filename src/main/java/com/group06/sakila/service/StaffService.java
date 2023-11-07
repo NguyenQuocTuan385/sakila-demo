@@ -5,5 +5,5 @@ import com.group06.sakila.request_model.StaffRegisterRequest;
 
 public interface StaffService {
     Staff createStaff(StaffRegisterRequest staffRequest);
-    String login(String email, String password) throws Exception;
+    String login(String username, String password) throws Exception;
 }
