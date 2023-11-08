@@ -6,6 +6,7 @@ import com.group06.sakila.repositories.StaffRepository;
 import com.group06.sakila.request_models.StaffRegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StaffServiceImpl implements StaffService {
     private final StaffRepository staffRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public Staff createStaff(StaffRegisterRequest staffRequest) {
         String username = staffRequest.getUsername();
@@ -33,6 +36,9 @@ public class StaffServiceImpl implements StaffService {
                 .active(true)
                 .lastUpdate(LocalDateTime.now())
                 .build();
+        String password = staffRequest.getPassword();
+        String encodePassword = passwordEncoder.encode(password);
+        newStaff.setPassword(encodePassword);
         return staffRepository.save(newStaff);
     }
 
