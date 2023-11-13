@@ -1,13 +1,11 @@
 package com.group06.sakila.filters;
 
-import com.group06.sakila.services.ActorServiceImpl;
 import com.group06.sakila.services.FilmServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -17,7 +15,6 @@ import java.io.IOException;
 
 @Component
 public class FilterLogging extends OncePerRequestFilter {
-    private static final Logger logActor = LoggerFactory.getLogger(ActorServiceImpl.class);
     private static final Logger logFilm = org.slf4j.LoggerFactory.getLogger(FilmServiceImpl.class);
 
     @Override
@@ -32,11 +29,7 @@ public class FilterLogging extends OncePerRequestFilter {
             String responseBody = getValueAsString(cachingResponseWrapper.getContentAsByteArray(),cachingResponseWrapper.getCharacterEncoding());
 
         if(request.getRequestURI().startsWith("/api/")){
-            if(request.getRequestURI().startsWith("/api/actors")){
-                logActor.info("Filter: METHOD = {}; REQUEST URI = {}; REQUEST BODY = {}; RESPONSE CODE = {}; RESPONSE BODY = {}",
-                        request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody);
-            }
-            else if (request.getRequestURI().startsWith("/api/films")){
+            if (request.getRequestURI().startsWith("/api/films")){
                 logFilm.info("Filter: METHOD = {}; REQUEST URI = {}; REQUEST BODY = {}; RESPONSE CODE = {}; RESPONSE BODY = {}",
                         request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody);
             }

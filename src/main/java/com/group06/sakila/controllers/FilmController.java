@@ -21,7 +21,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("${api.prefix}/films")
+@RequestMapping("${api.prefix}/filmsB")
 @Tag(name = "Films API")
 public class FilmController {
     private FilmService filmService;

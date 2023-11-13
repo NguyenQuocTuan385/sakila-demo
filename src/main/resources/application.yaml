@@ -5,3 +5,5 @@ spring:
       password:
 api:
   prefix: api
+server:
+  port: 8081
