@@ -2,7 +2,6 @@ package com.group06.sakila.controllers;
 
 import com.group06.sakila.request_models.FilmRequest;
 import com.group06.sakila.entities.Film;
-import com.group06.sakila.services.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -21,10 +20,9 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("${api.prefix}/films")
+@RequestMapping("${api.prefix}/filmsA")
 @Tag(name = "Films API")
 public class FilmController {
-    private FilmService filmService;
 
     @Operation(
             summary = "Get all films",
@@ -40,8 +38,10 @@ public class FilmController {
             }
     )
     @GetMapping("")
-    ResponseEntity<List<Film>> getAllFilms() {
-        return ResponseEntity.status(HttpStatus.OK).body(filmService.findAll());
+    ResponseEntity<?> getAllFilms() {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                "Get all films"
+        );
     }
 
     @Operation(
@@ -79,8 +79,10 @@ public class FilmController {
             }
     )
     @GetMapping("/{id}")
-    ResponseEntity<Film> findById(@PathVariable Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(filmService.findById(id));
+    ResponseEntity<?> findById(@PathVariable Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                "Get all films"
+        );
     }
 
     //Create film
@@ -99,7 +101,7 @@ public class FilmController {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
     })
     @PostMapping("")
-    ResponseEntity<Film> createFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+    ResponseEntity<?> createFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
                     mediaType = "application/json",
                     examples = {
@@ -123,7 +125,9 @@ public class FilmController {
                     }
             )
     ) @RequestBody @Valid FilmRequest filmRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(filmService.createFilm(filmRequest));
+        return ResponseEntity.status(HttpStatus.OK).body(
+                "Get all films"
+        );
     }
 
     @Operation(
@@ -143,7 +147,7 @@ public class FilmController {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
             })
     @PutMapping("/{id}")
-    ResponseEntity<Film> updateFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+    ResponseEntity<?> updateFilm(@io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
                     mediaType = "application/json",
                     examples = {
@@ -167,7 +171,9 @@ public class FilmController {
                     }
             )
     ) @RequestBody @Valid FilmRequest filmRequest, @PathVariable Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(filmService.updateFilm(filmRequest, id));
+        return ResponseEntity.status(HttpStatus.OK).body(
+                "Get all films"
+        );
     }
 
     // Delete film
@@ -189,7 +195,8 @@ public class FilmController {
             })
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteFilm(@PathVariable Integer id) {
-        filmService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Deleted film successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(
+                "Get all films"
+        );
     }
 }
