@@ -122,7 +122,7 @@ public class FilmController {
                             )
                     }
             )
-    ) @RequestBody @Valid FilmRequest filmRequest) {
+    ) @RequestBody FilmRequest filmRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(filmService.createFilm(filmRequest));
     }
 
@@ -166,7 +166,7 @@ public class FilmController {
                             )
                     }
             )
-    ) @RequestBody @Valid FilmRequest filmRequest, @PathVariable Integer id) {
+    ) @RequestBody FilmRequest filmRequest, @PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(filmService.updateFilm(filmRequest, id));
     }
 
