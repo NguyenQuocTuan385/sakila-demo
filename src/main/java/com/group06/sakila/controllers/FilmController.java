@@ -2,6 +2,7 @@ package com.group06.sakila.controllers;
 
 import com.group06.sakila.request_models.FilmRequest;
 import com.group06.sakila.entities.Film;
+import com.group06.sakila.services.ServerBService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -24,6 +25,7 @@ import java.util.List;
 @Tag(name = "Films API")
 public class FilmController {
 
+    private ServerBService serverBService;
     @Operation(
             summary = "Get all films",
             responses = {
@@ -38,9 +40,9 @@ public class FilmController {
             }
     )
     @GetMapping("")
-    ResponseEntity<?> getAllFilms() {
+    ResponseEntity<?> getAllFilms() throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(
-                "Get all films"
+                serverBService.getAllFilms()
         );
     }
 
@@ -79,9 +81,9 @@ public class FilmController {
             }
     )
     @GetMapping("/{id}")
-    ResponseEntity<?> findById(@PathVariable Integer id) {
+    ResponseEntity<?> findById(@PathVariable Integer id) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(
-                "Get all films"
+                serverBService.getFilmById(id)
         );
     }
 
