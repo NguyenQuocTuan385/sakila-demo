@@ -7,3 +7,7 @@ api:
   prefix: api
 server:
   port: 8081
+
+jwt:
+  expiration: 120000
+  secretKey: 4fWORaSb7eZdTvMOxMiBhQl1hnT04/ozmC5cYFiPr00=
