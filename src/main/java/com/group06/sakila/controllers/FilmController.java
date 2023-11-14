@@ -2,7 +2,7 @@ package com.group06.sakila.controllers;
 
 import com.group06.sakila.request_models.FilmRequest;
 import com.group06.sakila.entities.Film;
-import com.group06.sakila.services.ServerBService;
+import com.group06.sakila.services.ServerBServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -17,15 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("${api.prefix}/filmsA")
 @Tag(name = "Films API")
 public class FilmController {
 
-    private ServerBService serverBService;
+    private ServerBServiceImpl serverBService;
     @Operation(
             summary = "Get all films",
             responses = {
